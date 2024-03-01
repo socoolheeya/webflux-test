@@ -1,4 +1,4 @@
-Error 관련 메서드 정리
+:large_blue_diamond: Error 관련 메서드 정리
 -------------
 ### 1. onErrorContinue
 
