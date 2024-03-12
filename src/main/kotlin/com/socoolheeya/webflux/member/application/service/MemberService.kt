@@ -1,6 +1,6 @@
 package com.socoolheeya.webflux.member.application.service
 
-import com.socoolheeya.webflux.member.adpater.out.external.MemberRequest
+import com.socoolheeya.webflux.member.adapter.out.external.MemberRequest
 import com.socoolheeya.webflux.member.application.port.`in`.LoadMemberUseCase
 import com.socoolheeya.webflux.member.application.port.`in`.ModifyMemberUseCase
 import com.socoolheeya.webflux.member.application.port.`in`.RegisterMemberUseCase

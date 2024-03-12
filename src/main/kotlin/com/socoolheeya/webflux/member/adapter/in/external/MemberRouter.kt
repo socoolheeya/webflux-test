@@ -1,4 +1,4 @@
-package com.socoolheeya.webflux.member.adpater.`in`.external
+package com.socoolheeya.webflux.member.adapter.`in`.external
 
 import com.socoolheeya.webflux.member.application.service.MemberHandler
 import org.springframework.context.annotation.Bean
@@ -22,6 +22,5 @@ class MemberRouter {
                 PUT(MEMBER_PATH, memberHandler::modifyMember)
                 DELETE(MEMBER_PATH, memberHandler::deleteMember)
             }
-
         }
 }

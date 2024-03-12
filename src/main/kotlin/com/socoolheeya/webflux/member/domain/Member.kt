@@ -1,6 +1,6 @@
 package com.socoolheeya.webflux.member.domain
 
-import com.socoolheeya.webflux.member.adpater.out.external.MemberDto
+import com.socoolheeya.webflux.member.adapter.out.external.MemberDto
 import com.test.springdocstest.member.adapter.out.external.MemberResponse
 import jakarta.persistence.Column
 import jakarta.persistence.Entity

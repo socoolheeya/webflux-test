@@ -1,5 +1,6 @@
 package com.socoolheeya.webflux.configuration
 
+import com.socoolheeya.webflux.member.adapter.out.persistence.MemberPersistenceAdapter
 import com.zaxxer.hikari.HikariDataSource
 import jakarta.persistence.EntityManagerFactory
 import org.springframework.boot.context.properties.ConfigurationProperties
@@ -18,9 +19,10 @@ import javax.sql.DataSource
 
 @Configuration
 @EnableJpaAuditing
-@EnableJpaRepositories(basePackages = ["com.socoolheeya.webflux.member"],
-    entityManagerFactoryRef = "entityManagerFactory",
-    transactionManagerRef = "transactionManger")
+//@EnableJpaRepositories(basePackages = ["com.socoolheeya.webflux.member.adapter.out.persistence"],
+//    excludeFilters = [MemberPersistenceAdapter::class],
+//    entityManagerFactoryRef = "entityManagerFactory",
+//    transactionManagerRef = "transactionManger")
 @EnableTransactionManagement
 class JpaConfiguration {
 

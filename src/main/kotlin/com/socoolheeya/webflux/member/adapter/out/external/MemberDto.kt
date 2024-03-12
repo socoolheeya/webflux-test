@@ -1,4 +1,4 @@
-package com.socoolheeya.webflux.member.adpater.out.external
+package com.socoolheeya.webflux.member.adapter.out.external
 
 import com.socoolheeya.webflux.member.domain.Member
 

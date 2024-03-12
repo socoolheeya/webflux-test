@@ -1,4 +1,4 @@
-package com.socoolheeya.webflux.member.adpater.out.persistence
+package com.socoolheeya.webflux.member.adapter.out.persistence
 
 import com.socoolheeya.webflux.member.domain.Member
 import org.springframework.data.jpa.repository.JpaRepository

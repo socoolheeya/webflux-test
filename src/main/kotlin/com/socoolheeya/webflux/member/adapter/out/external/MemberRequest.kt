@@ -1,4 +1,4 @@
-package com.socoolheeya.webflux.member.adpater.out.external
+package com.socoolheeya.webflux.member.adapter.out.external
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.socoolheeya.webflux.member.domain.Member
