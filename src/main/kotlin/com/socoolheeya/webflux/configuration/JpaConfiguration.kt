@@ -1,6 +1,5 @@
 package com.socoolheeya.webflux.configuration
 
-import com.socoolheeya.webflux.member.adapter.out.persistence.MemberPersistenceAdapter
 import com.zaxxer.hikari.HikariDataSource
 import jakarta.persistence.EntityManagerFactory
 import org.springframework.boot.context.properties.ConfigurationProperties
@@ -8,7 +7,6 @@ import org.springframework.boot.jdbc.DataSourceBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.orm.jpa.JpaTransactionManager
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter
@@ -19,10 +17,6 @@ import javax.sql.DataSource
 
 @Configuration
 @EnableJpaAuditing
-//@EnableJpaRepositories(basePackages = ["com.socoolheeya.webflux.member.adapter.out.persistence"],
-//    excludeFilters = [MemberPersistenceAdapter::class],
-//    entityManagerFactoryRef = "entityManagerFactory",
-//    transactionManagerRef = "transactionManger")
 @EnableTransactionManagement
 class JpaConfiguration {
 
@@ -35,7 +29,7 @@ class JpaConfiguration {
     fun entityManagerFactory(): LocalContainerEntityManagerFactoryBean {
         val emf = LocalContainerEntityManagerFactoryBean()
         emf.dataSource = dataSource()
-        emf.setPackagesToScan("com.test.springdocstest")
+        emf.setPackagesToScan("com.socoolheeya.webflux")
         emf.jpaVendorAdapter = hibernateJpaVendorAdapter()
 
         return emf
@@ -46,7 +40,7 @@ class JpaConfiguration {
         hibernateJpaVendorAdapter.setGenerateDdl(true)
         return hibernateJpaVendorAdapter;
     }
-    @Bean
+    @Bean(name = ["transactionManager"])
     fun transactionManger(entityManagerFactory: EntityManagerFactory): PlatformTransactionManager {
         val jpaTransactionManager = JpaTransactionManager()
         jpaTransactionManager.entityManagerFactory = entityManagerFactory

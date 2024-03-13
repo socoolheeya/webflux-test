@@ -1,6 +1,6 @@
 package com.socoolheeya.webflux.member.application.port.`in`
 
-import com.test.springdocstest.member.adapter.out.external.MemberResponse
+import com.socoolheeya.webflux.member.adapter.out.external.MemberResponse
 
 
 interface LoadMemberUseCase {
