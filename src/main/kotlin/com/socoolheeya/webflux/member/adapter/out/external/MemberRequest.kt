@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotNull
 
 open class MemberRequest {
     companion object {
-        @JsonInclude(JsonInclude.Include.NON_NULL)
         data class Register(
             private val name: String,
             private val email: String?,
@@ -29,7 +28,6 @@ open class MemberRequest {
             fun isDelete(): Boolean = isDelete
         }
 
-        @JsonInclude(JsonInclude.Include.NON_NULL)
         data class Modify(
             @NotNull
             private var memberId: Long,
@@ -55,7 +53,6 @@ open class MemberRequest {
             fun isDelete(): Boolean = isDelete
         }
 
-        @JsonInclude(JsonInclude.Include.NON_NULL)
         data class ModifyPassword(
             private var memberId: Long,
             private val password: String

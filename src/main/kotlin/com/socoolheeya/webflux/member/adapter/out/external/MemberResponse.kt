@@ -1,4 +1,4 @@
-package com.test.springdocstest.member.adapter.out.external
+package com.socoolheeya.webflux.member.adapter.out.external
 
 class MemberResponse {
     companion object {

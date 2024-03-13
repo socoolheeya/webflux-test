@@ -1,6 +1,7 @@
 package com.socoolheeya.webflux.member.application.service
 
 import com.socoolheeya.webflux.member.adapter.out.external.MemberRequest
+import kotlinx.coroutines.FlowPreview
 import org.springframework.http.MediaType
 import org.springframework.http.codec.ServerSentEvent
 import org.springframework.stereotype.Component
@@ -8,6 +9,7 @@ import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.reactive.function.server.awaitFormData
 import org.springframework.web.reactive.function.server.bodyValueAndAwait
+import org.springframework.web.reactive.function.server.json
 import org.springframework.web.reactive.function.server.sse
 
 
@@ -15,8 +17,10 @@ import org.springframework.web.reactive.function.server.sse
 class MemberHandler(
     private val memberService: MemberService
 ) {
+    @FlowPreview
     suspend fun searchMember(request: ServerRequest): ServerResponse {
-        return ServerResponse.ok().sse().contentType(MediaType.APPLICATION_JSON)
+        return ServerResponse.ok()
+            .sse()
             .bodyValueAndAwait(ServerSentEvent.builder(
                 memberService.load(request.pathVariable("memberId").toLong())
             ))

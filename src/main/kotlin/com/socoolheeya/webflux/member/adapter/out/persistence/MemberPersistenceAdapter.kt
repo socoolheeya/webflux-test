@@ -2,16 +2,16 @@ package com.socoolheeya.webflux.member.adapter.out.persistence
 
 import com.socoolheeya.webflux.member.adapter.out.external.MemberDto
 import com.socoolheeya.webflux.member.adapter.out.external.MemberRequest
+import com.socoolheeya.webflux.member.adapter.out.external.MemberResponse
 import com.socoolheeya.webflux.member.application.port.out.LoadMemberPort
 import com.socoolheeya.webflux.member.application.port.out.ModifyMemberPort
 import com.socoolheeya.webflux.member.application.port.out.RegisterMemberPort
 import com.socoolheeya.webflux.member.application.port.out.RemoveMemberPort
-import com.test.springdocstest.member.adapter.out.external.MemberResponse
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
-@Component("MemberPersistenceAdapter")
+@Component
 @Transactional(readOnly = true)
 class MemberPersistenceAdapter (
     private val memberRepository: MemberRepository

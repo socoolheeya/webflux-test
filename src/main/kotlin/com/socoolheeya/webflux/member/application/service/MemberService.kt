@@ -1,6 +1,7 @@
 package com.socoolheeya.webflux.member.application.service
 
 import com.socoolheeya.webflux.member.adapter.out.external.MemberRequest
+import com.socoolheeya.webflux.member.adapter.out.external.MemberResponse
 import com.socoolheeya.webflux.member.application.port.`in`.LoadMemberUseCase
 import com.socoolheeya.webflux.member.application.port.`in`.ModifyMemberUseCase
 import com.socoolheeya.webflux.member.application.port.`in`.RegisterMemberUseCase
@@ -9,7 +10,6 @@ import com.socoolheeya.webflux.member.application.port.out.LoadMemberPort
 import com.socoolheeya.webflux.member.application.port.out.ModifyMemberPort
 import com.socoolheeya.webflux.member.application.port.out.RegisterMemberPort
 import com.socoolheeya.webflux.member.application.port.out.RemoveMemberPort
-import com.test.springdocstest.member.adapter.out.external.MemberResponse
 import jakarta.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
@@ -33,7 +33,7 @@ class MemberService(
         return loadMemberPort.loadMember(memberId)
     }
 
-    override fun register(@Valid request: MemberRequest.Companion.Register): MemberResponse.Companion.Register {
+    override fun register(request: MemberRequest.Companion.Register): MemberResponse.Companion.Register {
         return registerMemberPort.registerMember(request)
     }
 
