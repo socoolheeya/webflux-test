@@ -1,28 +1,31 @@
 package com.socoolheeya.webflux
 
-import com.socoolheeya.webflux.member.adpater.`in`.external.MemberRouter
+import com.socoolheeya.webflux.member.adapter.`in`.external.MemberRouter
+import com.socoolheeya.webflux.member.adapter.out.external.MemberResponse
 import com.socoolheeya.webflux.member.application.service.MemberHandler
 import com.socoolheeya.webflux.member.application.service.MemberService
-import com.test.springdocstest.member.adapter.out.external.MemberResponse
+import com.socoolheeya.webflux.member.domain.Member
+import kotlinx.coroutines.FlowPreview
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.BDDMockito
-import org.mockito.BDDMockito.*
+import org.mockito.BDDMockito.given
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.reactive.server.WebTestClient
+import java.util.*
 
 
 @ExtendWith(value = [SpringExtension::class])
 @WebFluxTest
-class SomethingNewTest {
+class MemberTest {
     private lateinit var webTestClient: WebTestClient
     @MockBean lateinit var memberService: MemberService
 
+    @OptIn(FlowPreview::class)
     @BeforeEach
     fun setUp() {
         val routerFunction = MemberRouter().memberEndpoint(MemberHandler(memberService))
@@ -53,7 +56,34 @@ class SomethingNewTest {
         assert(responseBody?.get(0)?.name.equals("hong"))
     }
 
-    fun test2() {
+    @Test
+    fun test() {
+        val response = memberService.load(1L)
+        println(response)
+    }
 
+
+
+    fun getMembers(): MutableList<Member> =
+        (1..10000000L).asSequence().map {
+            Member(memberId = it,
+                name = getName(it),
+                email = getEmail(it),
+                password = UUID.randomUUID().toString(),
+                isDelete = it % 2 == 0L)
+        }.toMutableList()
+
+    private fun getName(seq: Long): String {
+        if(seq % 2 == 0L) {
+            return "hong_$seq"
+        }
+        return "park_${seq + 100}"
+    }
+
+    private fun getEmail(seq: Long): String {
+        if(seq % 2 == 0L) {
+            return "hong_$seq@gmail.com"
+        }
+        return "park_${seq + 100}@gmail.com"
     }
 }
