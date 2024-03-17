@@ -6,6 +6,7 @@ import com.socoolheeya.webflux.member.application.service.MemberHandler
 import com.socoolheeya.webflux.member.application.service.MemberService
 import com.socoolheeya.webflux.member.domain.Member
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -60,6 +61,15 @@ class MemberTest {
     fun test() {
         val response = memberService.load(1L)
         println(response)
+    }
+
+    @Test
+    fun test2() {
+        runBlocking {
+            val response = memberService.getMembers()
+            println(response)
+        }
+
     }
 
 
