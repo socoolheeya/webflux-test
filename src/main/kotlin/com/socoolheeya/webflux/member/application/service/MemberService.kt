@@ -10,11 +10,12 @@ import com.socoolheeya.webflux.member.application.port.out.LoadMemberPort
 import com.socoolheeya.webflux.member.application.port.out.ModifyMemberPort
 import com.socoolheeya.webflux.member.application.port.out.RegisterMemberPort
 import com.socoolheeya.webflux.member.application.port.out.RemoveMemberPort
-import jakarta.validation.Valid
+import com.socoolheeya.webflux.member.domain.Member
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
 import org.springframework.validation.annotation.Validated
+import java.util.*
 
 @Service
 @Validated
@@ -47,5 +48,30 @@ class MemberService(
 
     override fun remove(memberId: Long) {
         removeMemberPort.removeMember(memberId)
+    }
+
+
+    suspend fun getMembers(): MutableList<Member> {
+        return (1..100000L).asSequence().map {
+            Member(memberId = it,
+                name = getName(it),
+                email = getEmail(it),
+                password = UUID.randomUUID().toString(),
+                isDelete = it % 2 == 0L)
+        }.toMutableList()
+    }
+
+    private fun getName(seq: Long): String {
+        if(seq % 2 == 0L) {
+            return "hong_$seq"
+        }
+        return "park_${seq + 100}"
+    }
+
+    private fun getEmail(seq: Long): String {
+        if(seq % 2 == 0L) {
+            return "hong_$seq@gmail.com"
+        }
+        return "park_${seq + 100}@gmail.com"
     }
 }

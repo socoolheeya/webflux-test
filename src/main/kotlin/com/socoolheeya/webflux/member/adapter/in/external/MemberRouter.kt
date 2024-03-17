@@ -20,7 +20,7 @@ class MemberRouter {
         coRouter {
             accept(MediaType.TEXT_EVENT_STREAM).nest {
                 GET(MEMBER_PATH).invoke(memberHandler::searchMember)
-                //POST("/members", memberHandler::registerMember)
+                POST("/members", memberHandler::registerMember)
                 PUT(MEMBER_PATH, memberHandler::modifyMember)
                 DELETE(MEMBER_PATH, memberHandler::deleteMember)
             }
