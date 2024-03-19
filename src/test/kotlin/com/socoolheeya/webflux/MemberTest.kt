@@ -2,6 +2,7 @@ package com.socoolheeya.webflux
 
 import com.socoolheeya.webflux.member.adapter.`in`.external.MemberRouter
 import com.socoolheeya.webflux.member.adapter.out.external.MemberResponse
+import com.socoolheeya.webflux.member.adapter.out.persistence.MemberPersistenceAdapter
 import com.socoolheeya.webflux.member.application.service.MemberHandler
 import com.socoolheeya.webflux.member.application.service.MemberService
 import com.socoolheeya.webflux.member.domain.Member
@@ -25,6 +26,7 @@ import java.util.*
 class MemberTest {
     private lateinit var webTestClient: WebTestClient
     @MockBean lateinit var memberService: MemberService
+    @MockBean lateinit var memberPersistenceAdapter: MemberPersistenceAdapter
 
     @OptIn(FlowPreview::class)
     @BeforeEach
@@ -60,7 +62,7 @@ class MemberTest {
     @Test
     fun test() {
         val response = memberService.load(1L)
-        println(response)
+        println("response : $response")
     }
 
     @Test
