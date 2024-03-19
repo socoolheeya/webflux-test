@@ -12,21 +12,20 @@ import com.socoolheeya.webflux.member.application.port.out.RegisterMemberPort
 import com.socoolheeya.webflux.member.application.port.out.RemoveMemberPort
 import com.socoolheeya.webflux.member.domain.Member
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
 import org.springframework.validation.annotation.Validated
-import java.util.*
+import java.util.UUID
 
 @Service
 @Validated
 class MemberService(
-    @Autowired @Qualifier("memberPersistenceAdapter")
+    @Autowired
     private val loadMemberPort: LoadMemberPort,
-    @Autowired @Qualifier("memberPersistenceAdapter")
+    @Autowired
     private val registerMemberPort: RegisterMemberPort,
-    @Autowired @Qualifier("memberPersistenceAdapter")
+    @Autowired
     private val modifyMemberPort: ModifyMemberPort,
-    @Autowired @Qualifier("memberPersistenceAdapter")
+    @Autowired
     private val removeMemberPort: RemoveMemberPort
 ): LoadMemberUseCase, RegisterMemberUseCase, ModifyMemberUseCase, RemoveMemberUseCase {
 
